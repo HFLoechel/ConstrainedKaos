@@ -28,6 +28,15 @@ The R Script contains functions for the implementation of the equations adhere t
 
 ![Image HP](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/hp2.png?token=AO45UWLDZUONZLKMEYS4ONS7LIGSY)
 
+The calcilation of the GC Content of a wordlenght of 4:
+
+![Image GC](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/GC4.png?token=AO45UWOERVE3EORFZBHVMR27LIG3I)
+
+The codwords with exact 50 % GC content:
+
+![Image GC50](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/GC4BW.png?token=AO45UWI7SNR6I7KHP4ZJVIS7LIG7S)
+
+
 For combination of several motifs with same length, the following sourcecode can be applied:
 ```
 color.plot2<-function(data,col){
@@ -57,12 +66,6 @@ hp.com=function(strings,n){
 
 color.plot2(hp.com2(c("ATG","AGT","CGT","CTG","TCA","TAC","GAC","GCA"),8),"Spectral")
 ```
+![Image GC](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/motifs.png?token=AO45UWONALRSRW4UL364PXS7LII7Y)
 
-The calcilation of the GC Content of a wordlenght of 4:
-
-![Image GC](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/GC4.png?token=AO45UWOERVE3EORFZBHVMR27LIG3I)
-
-The codwords with exact 50 % GC content:
-
-![Image GC50](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/GC4BW.png?token=AO45UWI7SNR6I7KHP4ZJVIS7LIG7S)
-
+### JAR
