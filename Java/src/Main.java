@@ -199,11 +199,11 @@ public class Main {
                         "-output: destination to save codewords\n" +
                         "At least one argument is required\n" +
                         "-hp: length of the homopolymer, which should be constrained\n" +
-                        "-input: path o fasta file with constrained sequences\n" +
+                        "-input: path to fasta file with constrained sequences\n" +
                         "-gc:  gc content as float\n" +
                         "or for an interval both of the following are required\n" +
-                        "-gcStart: gc content start as float\n" +
-                        "-gcEnd: gc content end as float\n" +
+                        "-gcStart: GC content start as float\n" +
+                        "-gcEnd: GC content end as float\n" +
                         "optional:\n" +
                         "-plot: size as integer of the dots in the CGR plot, if -plot is not used, no plot will be created\n"
 
