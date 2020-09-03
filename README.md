@@ -8,7 +8,7 @@ An implementation of the equations can be found in the R-Script. The optimized a
 ### R Script
 
 R version 3.5.3 or higher
-R-packages: kaos, viridis, ggplot2, reshape2
+R-packages: kaos, viridis, ggplot2, reshape2, RcolorBrewer
 
 
 ### Java Sourcecode
@@ -24,9 +24,45 @@ Java 12.0.1 or higher
 
 ### R Script
 
-The R Script contains functions for the implementation of the equations adhere to the homopolymer/motif constrain, the GC content/ Hamming distance calculation and the Hamming distance calculation for one codeword against the others. For evrey equation at least one example is provided. 
+The R Script contains functions for the implementation of the equations adhere to the homopolymer/motif constrain, the GC content/ Hamming distance calculation and the Hamming distance calculation for one codeword against the others. For evrey equation at least one example is provided. E.g. for homopolymer >=2:
 
+![Image HP](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/hp2.png?token=AO45UWLDZUONZLKMEYS4ONS7LIGSY)
 
+For combination of several motifs with same length, the following sourcecode can be applied:
+```
+color.plot2<-function(data,col){
+  ggplot(melt((data)), aes(x = Var1, y = Var2)) +
+    geom_raster(aes(fill = as.factor(value))) +
+    theme_bw() +
+    theme(panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          axis.line=element_blank(),
+          axis.text.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks=element_blank(),
+          axis.title.x=element_blank(),
+          axis.title.y=element_blank(),
+          legend.position="none")+
+    scale_fill_brewer(palette=col)
+}
 
+hp.com=function(strings,n){
+  m=matrix(0,nrow=2^n,ncol =2^n)
+  hp=matrix(0,nrow=2^n,ncol =2^n)
+  for (s in strings) {
+    m=m+hp(s,n)
+  }
+  m
+}
 
+color.plot2(hp.com2(c("ATG","AGT","CGT","CTG","TCA","TAC","GAC","GCA"),8),"Spectral")
+```
+
+The calcilation of the GC Content of a wordlenght of 4:
+
+![Image GC](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/GC4.png?token=AO45UWOERVE3EORFZBHVMR27LIG3I)
+
+The codwords with exact 50 % GC content:
+
+![Image GC50](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/GC4BW.png?token=AO45UWI7SNR6I7KHP4ZJVIS7LIG7S)
 
