@@ -137,7 +137,7 @@ flower=matrix(c(1,0,0,1),nrow = 2,ncol = 2)
 # Lines
 lines=matrix(c(1,1,0,0),nrow = 2,ncol = 2)
 # Hamming
-hamming=matrix(c(0,1,1,1,1,0,1,1,1,1,0,1,1,1,1,0), nrow =4, ncol = 4)
+hamming=matrix(c(1,1,1,0, 1,1,0,1, 1,0,1,1, 0,1,1,1), nrow =4, ncol = 4)
 
 # GC plot for diagonal order of A and T
 f<-distance(flower,4)
@@ -224,3 +224,4 @@ ha<-hamming("GGATGGA")
 color.plot(ha,brewer.pal(6,"Spectral"))
 # Maximum hamming distance (corresponds to the wordlength)
 color.plot(codewords(ha,7),"black")
+
