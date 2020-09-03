@@ -10,6 +10,7 @@ library(kaos)
 library(viridis)
 library(ggplot2)
 library(reshape2)
+library(RColorBrewer)
 
 ############################################################
 # Color plots
@@ -60,6 +61,12 @@ hp<-function(sequence,l){
   init
 }
 
+codewords<-function(matrix,n){
+  m=matrix(0,ncol=ncol(matrix),nrow=nrow(matrix))
+  m[which(matrix==n,arr.ind = T)]=1
+  m
+}
+
 ######################
 # Helper function to obtain cgr from last coordinates
 ######################
@@ -88,17 +95,17 @@ sequence="AA"
 
 hp1=hp(sequence, 6)
 # Sequences without the substring "AA"
-plot(which(hp1==0,arr.ind = T))
+color.plot(codewords(hp1,0),"black")
 # Sequences containing the substring "AA", colored based on the occurrence of the substring
 color.plot(hp1,rainbow(4))
 
 hp2=hp("GG", 6)
 hp3=hp("CC", 6)
 hp4=hp("TT", 6)
-# Plot for hp>=2, colored based on the occurrence of the substrings
+# Plot for hp>=2, colored based on the occurrence of the substrings, white are codewords with no hp >=2
 color.plot(hp1+hp2+hp3+hp4,viridis(20))
 # Sequences without hp>=2
-plot(which((hp1+hp2+hp3+hp4)==0,arr.ind = T))
+color.plot(codewords(hp1+hp2+hp3+hp4,0),"black")
 
 
 #############################################################
@@ -135,23 +142,23 @@ hamming=matrix(c(0,1,1,1,1,0,1,1,1,1,0,1,1,1,1,0), nrow =4, ncol = 4)
 # GC plot for diagonal order of A and T
 f<-distance(flower,4)
 # Amount of A and T per sequence
-color.plot(f,rainbow(4))
+color.plot(f,brewer.pal(4,"PiYG"))
 # Sequences with 50 % GC content
-plot(which((f)==2,arr.ind = T))
+color.plot(codewords(f,2),"black")
 
 # GC plot for vertical order of A and T
 l<-distance(lines,6)
 # Amount of A and T per sequence
-color.plot(l,rainbow(4))
+color.plot(l,brewer.pal(4,"PiYG"))
 # Sequences with 50 % GC content
-plot(which((l)==3,arr.ind = T))
+color.plot(codewords(l,3),"black")
 
 # Hamming distance for sequences of length = 4
 h<-distance(hamming,4)
 # Hamming distance by colors 
-color.plot(h,rainbow(4))
+color.plot(h,brewer.pal(4,"YlGnBu"))
 # Sequences with hamming distance of exactly 2
-plot(which((h)==2,arr.ind = T))
+color.plot(codewords(h,1),"black")
 
 #############################################################
 # Hamming distance for single sequences
@@ -214,6 +221,6 @@ getM=function(s){
 # Hamming distance to a specific sequence
 ha<-hamming("GGATGGA")
 # Colored plot of different hamming distances
-color.plot(ha,color=rainbow(4))
+color.plot(ha,brewer.pal(6,"Spectral"))
 # Maximum hamming distance (corresponds to the wordlength)
-plot(which(ha==7,arr.ind = T),cex=0.1)
+color.plot(codewords(ha,7),"black")
