@@ -1,7 +1,7 @@
 # Fractal Construction of Constrained DNA Codewords
 
 This repository is the official implementation of Fractal Construction of Constrained DNA Codewords.
-An implementation of the equations can be found in the R-Script. The optimized algorithms adhere to DNA storage constrains can be found in the Java implementation, within a compiled version: ConstrainedKaos.jar .
+An implementation of the equations can be found in the R-Script. The optimized algorithms adhere to DNA storage constraints can be found in the Java implementation, within a compiled version: ConstrainedKaos.jar .
 
 ## Requirements
 
@@ -24,15 +24,15 @@ Java 12.0.1 or higher
 
 ### R Script
 
-The R Script contains functions for the implementation of the equations adhere to the homopolymer/motif constrain, the GC content/ Hamming distance calculation and the Hamming distance calculation for one codeword against the others. For evrey equation at least one example is provided. E.g. for homopolymer >=2:
+The R Script contains functions for the implementation of the equations adhere to the homopolymer/motif constraint, the GC content/ Hamming distance calculation, and the Hamming distance calculation for one codeword against the others. For every equation at least one example is provided. E.g. for homopolymer >=2:
 
 ![Image HP](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/hp2.png?token=AO45UWLDZUONZLKMEYS4ONS7LIGSY)
 
-The calcilation of the GC Content of a wordlenght of 4:
+The calculation of the GC Content of a wordlength of 4:
 
 ![Image GC](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/GC4.png?token=AO45UWOERVE3EORFZBHVMR27LIG3I)
 
-The codwords with exact 50 % GC content:
+The codewords with an exact 50 % GC content:
 
 ![Image GC50](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/GC4BW.png?token=AO45UWI7SNR6I7KHP4ZJVIS7LIG7S)
 
@@ -69,3 +69,31 @@ color.plot2(hp.com2(c("ATG","AGT","CGT","CTG","TCA","TAC","GAC","GCA"),8),"Spect
 ![Image GC](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/motifs.png?token=AO45UWONALRSRW4UL364PXS7LII7Y)
 
 ### JAR
+
+The JAR can be executed with:
+
+java -jar ConstrainedKaos.jar -length 6 -output path/codewords.fasta -hp 2
+
+The codeword length **-length** and the output **-output** path to store the codewords, are always required to run the application.
+At least one of the following options is required as well:
+
+**-hp**: length of the homopolymer, which should be constrained
+
+**input**: path to fasta file with constrained sequences
+
+**-gc**: GC content as float
+
+
+or for an interval both of the following are required
+
+**-gcStart**: GC content start as float
+
+**-gcEnd**: GC content end as float
+
+Also, there is the option to plot the code words:
+
+**-plot**: size as an integer of the dots in the CGR plot, if **-plot** is not used, no plot will be created
+
+
+For a codeword length greater 12 the application will throw a warning, that the heap size may be exceeded. So for longer codewords, the heap size of the JVM has to be adapted. 
+The longest words we tested for were 16, which also let to a significant increase in the runtime.
