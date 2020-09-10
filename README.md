@@ -31,21 +31,21 @@ Java 12.0.1 or higher
 The R Script contains functions for the implementation of the equations adhere to the homopolymer/motif constraint, the GC content/Hamming distance calculation, and the Hamming distance calculation for one codeword against the others. For every equation at least one example is provided. E.g. for homopolymer >=2:
 
 
-<img width="250" alt="Image HP" src="https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/hp2.png?token=AO45UWLDZUONZLKMEYS4ONS7LIGSY">
+<img width="250" alt="Image HP" src="https://github.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/blob/master/documentation/images/hp2.png?raw=true">
 
 <!---
 ![Image HP](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/hp2.png?token=AO45UWLDZUONZLKMEYS4ONS7LIGSY)
 --->
 The calculation of the GC Content of a wordlength of 4:
 
-<img width="250" alt="Image GC" src="https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/GC4.png?token=AO45UWOERVE3EORFZBHVMR27LIG3I">
+<img width="250" alt="Image GC" src="https://github.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/blob/master/documentation/images/GC4.png?raw=true">
 
 <!---
 ![Image GC](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/GC4.png?token=AO45UWOERVE3EORFZBHVMR27LIG3I)
 --->
 The codewords with an exact 50 % GC content:
 
-<img width="250" alt="Image GC50" src="https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/GC4BW.png?token=AO45UWI7SNR6I7KHP4ZJVIS7LIG7S">
+<img width="250" alt="Image GC50" src="https://github.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/blob/master/documentation/images/GC4BW.png?raw=true">
 
 <!---
 ![Image GC50](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/GC4BW.png?token=AO45UWI7SNR6I7KHP4ZJVIS7LIG7S)
@@ -80,7 +80,7 @@ hp.com=function(strings,n){
 
 color.plot2(hp.com2(c("ATG","AGT","CGT","CTG","TCA","TAC","GAC","GCA"),8),"Spectral")
 ```
-<img width="250" alt="Image GC50" src="https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/motifs.png?token=AO45UWONALRSRW4UL364PXS7LII7Y">
+<img width="250" alt="Image GC50" src="https://github.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/blob/master/documentation/images/motifs.png?raw=true">
 
 <!---
 ![Image GC](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/motifs.png?token=AO45UWONALRSRW4UL364PXS7LII7Y)
