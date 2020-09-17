@@ -1,6 +1,6 @@
-# Fractal Construction of Constrained Codewords for DNA Storage Systems
+# Fractal Construction of Constrained Code Words for DNA Storage Systems
 
-This repository is the official implementation of Fractal Construction of Constrained Codewords for
+This repository is the official implementation of Fractal Construction of Constrained Code Words for
 DNA Storage Systems.
 
 With the increasing speed of digitization, the amount of digital data produced is growing exponentially. To store this increasingly large amount of data, DNA is an alternative data storage medium. This comes with certain constraints, such as run-length limitation or guanine-cytosine (GC) content. Here we present a new approach, derived from chaos game representation for DNA, transformed into a matrix representation, to generate those DNA code words with certain constraints, namely GC content, homopolymers, and undesired motifs, which can then be used to build DNA storage systems.
