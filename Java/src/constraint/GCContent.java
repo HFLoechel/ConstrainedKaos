@@ -3,7 +3,7 @@ package constraint;
 import java.util.HashSet;
 
 /**
- * rKaos  27.06.20
+ * ConstrainedKaos  27.06.20
  * Class for GC content restrictions
  *
  * @author Hannah Franziska Löchel and Marius Welzel
@@ -25,7 +25,6 @@ public class GCContent {
         this.gc = new HashSet<>();
 
 
-        //ToDO wegen smmetir überlegen
         int len = size * 2;
         for (int i = 0; i < contend.length; i++) {
 

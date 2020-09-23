@@ -1,4 +1,4 @@
-import constraint.CGRMatrix;
+import constraint.mCGR;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
@@ -10,8 +10,9 @@ import org.jfree.ui.ApplicationFrame;
 import java.awt.*;
 
 /**
- * rKaos  23.06.20
- * By Hannah Franziska Löchel
+ * ConstrainedKaos  23.06.20
+ *
+ * @author Hannah Franziska Löchel
  */
 public class Plot {
 
@@ -22,7 +23,7 @@ public class Plot {
      * @param kaosCons which should be plotted
      * @param size     of dots
      */
-    public static void plot(CGRMatrix kaosCons, int size) {
+    public static void plot(mCGR kaosCons, int size) {
         XYSeries points = new XYSeries("Points");
 
         for (int key : kaosCons.getRows().keySet()) {
@@ -58,7 +59,7 @@ public class Plot {
         chartPanel.setMouseWheelEnabled(true);
 
         chart.removeLegend();
-        chartPanel.setPopupMenu( null );
+        chartPanel.setPopupMenu(null);
         cgr.setContentPane(chartPanel);
         cgr.setVisible(true);
 

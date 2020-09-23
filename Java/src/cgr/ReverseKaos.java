@@ -2,14 +2,14 @@ package cgr;
 
 
 import constraint.Constraints;
-import constraint.CGRMatrix;
+import constraint.mCGR;
 import org.apache.commons.math3.fraction.BigFraction;
 
 import java.io.*;
 import java.math.BigInteger;
 
 /**
- * rKaos  05.11.19
+ * ConstrainedKaos 05.11.19
  * Calculating Sequences from last CGR coordinates to DNA string
  *
  * @author Hannah Franziska Löchel
@@ -21,41 +21,18 @@ public class ReverseKaos extends CGR {
      * Method to save codewords
      *
      * @param constraints Constraints object to be saved
-     * @param path       Output path (as string)
+     * @param path        Output path (as string)
      */
     public static void saveAsDNA(Constraints constraints, String path) {
         System.out.println("Starting to translate to DNA.");
-        CGRMatrix matrix = constraints.getMatrix();
+        mCGR matrix = constraints.getMatrix();
         int len = matrix.getLen();
-        //System.out.println(len);
         int count = 0;
-        //File file = new File(path);
         try {
 
             BufferedWriter writer = new BufferedWriter(new FileWriter(path));
-           /* if (!file.exists()) {
-
-                file.createNewFile();
-            }
-            else{*/
-/*
-                System.out.println("The file already exists, do you want to overwrite it? (y/n) ");
-                BufferedReader reader =
-                        new BufferedReader(new InputStreamReader(System.in));
-                String input = reader.readLine();
-                if(input.equals("y")){
-                    System.out.println( path + " will be overwritten");
-                }
-                else  {
-                    System.out.println( path + " will be overwritten");
-                    System.out.println("Process will be canceled");
-                    System.exit(1);
-                }*/
-
-            //  }
 
             for (int key : matrix.getRows().keySet()) {
-                //richtige länge?
 
                 BigFraction y = new BigFraction(new BigInteger(String.valueOf(len + 1 - key * 2)), (new BigInteger(String.valueOf(len))));
 
@@ -71,7 +48,7 @@ public class ReverseKaos extends CGR {
 
             writer.flush();
             writer.close();
-            System.out.println("Translation done, constrained DNA is saved in " + path);
+            System.out.println("The translation is done, constrained DNA is saved in " + path);
         } catch (IOException e) {
             System.out.println("Can not find output path, your data wont be stored. ");
         }

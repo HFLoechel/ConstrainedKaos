@@ -4,9 +4,10 @@ import org.apache.commons.math3.fraction.BigFraction;
 
 
 /**
- * rKaos  01.11.19
+ * ConstrainedKaos  01.11.19
  * Class to construct CGR
- * By Hannah Franziska Löchel
+ *
+ * @author Hannah Franziska Löchel
  */
 public class Kaos extends CGR {
 

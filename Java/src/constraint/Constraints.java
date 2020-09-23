@@ -3,7 +3,7 @@ package constraint;
 import java.util.*;
 
 /**
- * rKaos  18.06.20
+ * ConstrainedKaos  18.06.20
  * This class contains either constrained or allowed codewords in cgr matrix
  *
  * @author Hannah Franziska Löchel
@@ -12,9 +12,9 @@ import java.util.*;
 public class Constraints {
 
     /*
-     *  constraints as an CGRMatrix object
+     *  constraints as an mCGR object
      */
-    private CGRMatrix result;
+    private mCGR result;
     /*
      * codeword length
      */
@@ -27,7 +27,7 @@ public class Constraints {
      */
     public Constraints(int length) {
         this.wordlength = length;
-        this.result = new CGRMatrix();
+        this.result = new mCGR();
         this.result.setLen(this.wordlength);
     }
 
@@ -39,16 +39,16 @@ public class Constraints {
      * @param constrain String with the forbidden subsequence
      */
     public Constraints(int length, String constrain) {
-        CGRMatrix cgrMatrix= new CGRMatrix(constrain);
+        mCGR mCGR = new mCGR(constrain);
         this.wordlength = length;
-        createMatrix(constrain.length(), cgrMatrix);
+        createMatrix(constrain.length(), mCGR);
     }
 
     /**
      * Constructor for constrained homopolymeres in a sparsematrix and constraints as fasta file
      *
      * @param length of the desired codewords
-     * @param input sequences as HashMap, with length as key and sequences as values
+     * @param input  sequences as HashMap, with length as key and sequences as values
      */
 
     public Constraints(int length, HashMap<Integer, HashSet<String>> input) {
@@ -56,24 +56,24 @@ public class Constraints {
         ArrayList<Integer> arrayList = new ArrayList<>(input.keySet());
         Collections.sort(arrayList);
         int zoom = arrayList.get(0);
-        CGRMatrix cgrMatrix = new CGRMatrix(input.get(zoom), zoom);
+        mCGR mCGR = new mCGR(input.get(zoom), zoom);
 
         this.wordlength = length;
         while (zoom < this.wordlength) {
 
             if (arrayList.contains(zoom)) {
-                CGRMatrix cgrMatrix2 = new CGRMatrix(input.get(zoom), zoom);
-                cgrMatrix = cgrMatrix.add(cgrMatrix2);
+                mCGR mCGR2 = new mCGR(input.get(zoom), zoom);
+                mCGR = mCGR.add(mCGR2);
 
 
             }
-            CGRMatrix nextMatrix = cgrMatrix.doubleSize();
-            cgrMatrix = nextMatrix.tiling(cgrMatrix);
+            mCGR nextMatrix = mCGR.doubleSize();
+            mCGR = nextMatrix.tiling(mCGR);
 
 
             zoom++;
         }
-        this.result = cgrMatrix;
+        this.result = mCGR;
     }
 
     /**
@@ -83,28 +83,28 @@ public class Constraints {
      * @param hp     length of the forbidden homopolymers
      */
     public Constraints(int length, int hp) {
-        CGRMatrix cgrMatrix = new CGRMatrix(hp);
+        mCGR mCGR = new mCGR(hp);
         this.wordlength = length;
-        createMatrix(hp, cgrMatrix);
+        createMatrix(hp, mCGR);
     }
 
 
     /**
      * Construction of the matrix within constraints
      *
-     * @param zoom     represents the length of words in the CGRmatrix
-     * @param cgrMatrix Matrix for tiling
+     * @param zoom represents the length of words in the mCGR
+     * @param mCGR for tiling
      */
-    private void createMatrix(int zoom, CGRMatrix cgrMatrix) {
+    private void createMatrix(int zoom, mCGR mCGR) {
         while (zoom < this.wordlength) {
 
 
-            CGRMatrix nextMatrix = cgrMatrix.doubleSize();
-            cgrMatrix = nextMatrix.tiling(cgrMatrix);
+            mCGR nextMatrix = mCGR.doubleSize();
+            mCGR = nextMatrix.tiling(mCGR);
 
             zoom++;
         }
-        this.result = cgrMatrix;
+        this.result = mCGR;
 
     }
 
@@ -150,9 +150,9 @@ public class Constraints {
     /**
      * Method to get the object containing the results
      *
-     * @return CGRMatrix Object with result of constrained / allowed sequences
+     * @return mCGR Object with result of constrained / allowed sequences
      */
-    public CGRMatrix getMatrix() {
+    public mCGR getMatrix() {
         return this.result;
     }
 

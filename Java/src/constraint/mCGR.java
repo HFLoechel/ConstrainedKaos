@@ -8,28 +8,28 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- * rKaos  19.06.20
- * Class to construct and resize CGR-matrix
+ * ConstrainedKaos  19.06.20
+ * Class to construct and resize mCGR
  *
  * @author Hannah Franziska Löchel
  */
 
-public class CGRMatrix {
+public class mCGR {
     /**
-     * CGR in HashMap structure
+     * mCGR in HashMap structure
      */
     private HashMap<Integer, HashSet<Integer>> rows;
     /**
-     * length of CGR
+     * length of mCGR
      */
     private int len;
 
-    CGRMatrix() {
+    mCGR() {
         this.rows = new HashMap<>();
         this.len = 0;
     }
 
-    CGRMatrix(HashSet<String> constrains, int zoom) {
+    mCGR(HashSet<String> constrains, int zoom) {
         this.len = (int) Math.pow(2, zoom);
 
         this.rows = new HashMap<>();
@@ -52,11 +52,11 @@ public class CGRMatrix {
     }
 
     /**
-     * Constructor for CGRMatrix with one constraint
+     * Constructor for mCGR with one constraint
      *
      * @param constrain as String
      */
-    CGRMatrix(String constrain) {
+    mCGR(String constrain) {
         Kaos kaos = new Kaos(constrain);
         this.len = (int) Math.pow(2, constrain.length());
         int col = toMatrix(kaos.getxLast(), this.len);
@@ -79,11 +79,11 @@ public class CGRMatrix {
     }
 
     /**
-     * Constructor for CGRMatrix of constrained homopolymers
+     * Constructor for mCGR of constrained homopolymers
      *
      * @param hp length of constrained homopolymers
      */
-    CGRMatrix(int hp) {
+    mCGR(int hp) {
         char[] con = new char[hp];
         Arrays.fill(con, 'a');
         String constrain = new String(con);
@@ -101,11 +101,11 @@ public class CGRMatrix {
     }
 
     /**
-     * Constructor for CGRMatrix of GC content, allowed sequences are stored, a fully allowed row is marked with -1
+     * Constructor for mCGR of GC content, allowed sequences are stored, a fully allowed row is marked with -1
      *
      * @param gc GCContend object
      */
-    CGRMatrix(GCContent gc) {
+    mCGR(GCContent gc) {
         HashSet<Integer> init = new HashSet<>();
         rows = new HashMap<>();
         init.add(-1);
@@ -117,17 +117,17 @@ public class CGRMatrix {
 
 
     /**
-     * Constructor for CGRMatrix
+     * Constructor for mCGR
      *
-     * @param matrix as HashMap of CGR with codewords or constraints
-     * @param length size of CGR
+     * @param matrix as HashMap of mCGR with codewords or constraints
+     * @param length size of mCGR
      */
-    CGRMatrix(HashMap<Integer, HashSet<Integer>> matrix, int length) {
+    mCGR(HashMap<Integer, HashSet<Integer>> matrix, int length) {
         this.rows = matrix;
         this.len = length;
     }
 
-    CGRMatrix doubleSize() {
+    mCGR doubleSize() {
         HashMap<Integer, HashSet<Integer>> d = new HashMap<>();
 
 
@@ -149,19 +149,19 @@ public class CGRMatrix {
             d.put(newRow, newColOne);
             d.put(newRowNext, newColTwo);
         }
-        return new CGRMatrix(d, this.len * 2);
+        return new mCGR(d, this.len * 2);
     }
 
     /**
      * Method to tile over the next iteration of CGR
      *
-     * @param cgrMatrix CGRMatrix for tiling
-     * @return changed CGRMatrix
+     * @param mCGR for tiling
+     * @return changed mCGR
      */
-    CGRMatrix tiling(CGRMatrix cgrMatrix) {
+    mCGR tiling(mCGR mCGR) {
 
-        for (int row : cgrMatrix.rows.keySet()) {
-            int newRow = row + cgrMatrix.len;
+        for (int row : mCGR.rows.keySet()) {
+            int newRow = row + mCGR.len;
             HashSet<Integer> newColOne;
 
             if (rows.containsKey(row)) {
@@ -180,13 +180,13 @@ public class CGRMatrix {
                 this.rows.put(newRow, newColTwo);
             }
 
-            HashSet<Integer> cols = cgrMatrix.rows.get(row);
+            HashSet<Integer> cols = mCGR.rows.get(row);
 
             for (int col : cols) {
                 newColOne.add(col);
-                newColOne.add(col + cgrMatrix.len);
+                newColOne.add(col + mCGR.len);
                 newColTwo.add(col);
-                newColTwo.add(col + cgrMatrix.len);
+                newColTwo.add(col + mCGR.len);
             }
         }
 
@@ -196,21 +196,21 @@ public class CGRMatrix {
 
 
     /**
-     * Returns he CGR Matrix as HashMap, where the keys are the rows (y-values) and the values are the columns stored in a HashSet (y-Values)
+     * Returns the mCGR as HashMap, where the keys are the rows (y-values) and the values are the columns stored in a HashSet (y-Values)
      *
-     * @return CGR-Matrix as HashMap/sparsematrix
+     * @return mCGR as HashMap/sparsematrix
      */
     public HashMap<Integer, HashSet<Integer>> getRows() {
         return this.rows;
     }
 
-    public CGRMatrix add(CGRMatrix CGRMatrix) {
-        for (int row : CGRMatrix.rows.keySet()) {
+    public mCGR add(mCGR mCGR) {
+        for (int row : mCGR.rows.keySet()) {
             if (this.rows.containsKey(row)) {
                 HashSet<Integer> col = this.rows.get(row);
-                col.addAll(CGRMatrix.rows.get(row));
+                col.addAll(mCGR.rows.get(row));
             } else {
-                this.rows.put(row, CGRMatrix.rows.get(row));
+                this.rows.put(row, mCGR.rows.get(row));
             }
         }
 
@@ -218,12 +218,12 @@ public class CGRMatrix {
     }
 
     /**
-     * Filters the allowed sequences of a CGRMatrix containing the forbidden sequences with a given gcContend
+     * Filters the allowed sequences of a mCGR containing the forbidden sequences with a given gcContend
      *
      * @param gcContent to filter with
-     * @return filterd CGR sparsematrix with codewords
+     * @return filterd mCGR sparsematrix with codewords
      */
-    CGRMatrix filter(GCContent gcContent) {
+    mCGR filter(GCContent gcContent) {
         HashMap<Integer, HashSet<Integer>> rows2 = new HashMap<>();
 
         for (int row : gcContent.getGc()) {
@@ -244,7 +244,7 @@ public class CGRMatrix {
     }
 
     /**
-     * @return length of CGR sparsematrix
+     * @return length of mCGR sparsematrix
      */
     public int getLen() {
         return this.len;

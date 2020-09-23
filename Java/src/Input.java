@@ -7,8 +7,9 @@ import java.util.HashSet;
 import java.util.regex.Pattern;
 
 /**
- * rKaos  11.11.19
- * By Hannah Franziska Löchel
+ * ConstrainedKaos   11.11.19
+ *
+ * @author Hannah Franziska Löchel
  */
 public class Input {
     private HashMap<Integer, HashSet<String>> input;
@@ -16,6 +17,7 @@ public class Input {
 
     /**
      * Returns input for hp constraint
+     *
      * @param hp length of homopolymer
      */
     public Input(int hp) {
@@ -34,6 +36,7 @@ public class Input {
 
     /**
      * Combines two inputs with different constarints
+     *
      * @param input2 to combine
      * @return combined input
      */
@@ -54,6 +57,7 @@ public class Input {
 
     /**
      * Input for constrained sequences in fasta format
+     *
      * @param name path
      */
     public Input(String name, int length) {
@@ -88,10 +92,7 @@ public class Input {
                     }
 
 
-                }
-                // key = "";
-
-                else if (line.startsWith(">")) {
+                } else if (line.startsWith(">")) {
                     key = line.substring(1);
                     stringBuilder = new StringBuilder();
 
@@ -117,7 +118,8 @@ public class Input {
     }
 
     /**
-     * Returns the CGRMatrix of the input with sequence length as key and sequences as values
+     * Returns the mCGR of the input with sequence length as key and sequences as values
+     *
      * @return HashMap with sequence length as key and sequences as values
      */
     public HashMap<Integer, HashSet<String>> getInput() {

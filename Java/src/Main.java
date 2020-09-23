@@ -2,6 +2,10 @@
 import constraint.*;
 import cgr.ReverseKaos;
 
+/**
+ * ConstrainedKaos
+ * @author Hannah Franziska Löchel
+ */
 
 public class Main {
     private static int length = 0;
@@ -18,24 +22,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //TODO length>=hp
- /*       length = 10;
-        constrains = true;
-        //gcCon = true;
-        //gc = 0.5;
-        //hp =3;
-        plotSize = 1;
-
-
-        fileInput="test/codes4.fasta";
-
-        fileOutput = "test/codes5.fasta";
-        in=true;
-        out=true;*/
-
-        //to >
-
-        //Todo overwrite file
         if (args.length > 0) {
             if (args.length % 2 == 0) {
 
@@ -205,7 +191,7 @@ public class Main {
                         "-gcStart: GC content start as float\n" +
                         "-gcEnd: GC content end as float\n" +
                         "optional:\n" +
-                        "-plot: size as integer of the dots in the CGR plot, if -plot is not used, no plot will be created\n"
+                        "-plot: size as integer of the dots (we recommend 1 - 5) in the mCGR plot, if -plot is not used, no plot will be created\n"
 
         );
     }
