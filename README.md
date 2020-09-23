@@ -149,7 +149,7 @@ Translation done, constrained DNA is saved in output.fasta
 ```
 And the following plot will appear:
 
-
+<img width="250" alt="Image GC50" src="https://github.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/blob/master/documentation/images/java.png?raw=true">
 
 For a codeword length greater 12 the application will throw a warning, that the heap size may be exceeded. So for longer code words, the heap size of the JVM has to be adapted. 
 The longest words we tested for were 16, which also let to a significant increase in the runtime.
