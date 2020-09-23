@@ -3,11 +3,11 @@ This repository is the official implementation of Fractal Construction of Constr
 
 With the increasing speed of digitization, the amount of digital data produced is growing exponentially. To store this increasingly large amount of data, DNA is an alternative data storage medium. This comes with certain constraints, such as run-length limitation or guanine-cytosine (GC) content. Here we present a new approach, derived from chaos game representation for DNA, transformed into a matrix representation, to generate those DNA code words with certain constraints, namely GC content, homopolymers, and undesired motifs, which can then be used to build DNA storage systems.
 
-An implementation of the equations can be found in the R-Script. The optimized algorithms adhere to DNA storage constraints can be found in the Java implementation, within a compiled version: ConstrainedKaos.jar .
+An implementation of the equations can be found in the R-Script. The optimized algorithms adhere to DNA storage constraints can be found in the Java implementation, within a compiled version: ConstrainedKaos.jar.
 
 ## Requirements
 
-### Hadware Requirements
+### Hardware Requirements
 
 ConstrainedKaos requires only a standard computer, with enough RAM for the user-defined code word length. 
 
@@ -45,7 +45,7 @@ git clone https://github.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-C
 
 ### R Script
 
-The R Script contains functions for the implementation of the equations adhere to the homopolymer/motif constraint, the GC content/Hamming distance calculation, and the Hamming distance calculation for one codeword against the others. It is intended to illustrate the mathematical equations, therefor we recommend using RStudio. For every equation at least one example is provided. For instance, the following image is the result of limiting the length of homopolymers >=2:
+The R Script contains functions for the implementation of the equations adhere to the homopolymer/motif constraint, the GC content/Hamming distance calculation, and the Hamming distance calculation for one codeword against the others. It is intended to illustrate the mathematical equations, therefore we recommend using RStudio. For every equation at least one example is provided. For instance, the following image is the result of limiting the length of homopolymers >=2:
 
 
 <img width="250" alt="Image HP" src="https://github.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/blob/master/documentation/images/hp2.png?raw=true">
@@ -68,7 +68,7 @@ The codewords with an exact 50 % GC content:
 ![Image GC50](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/GC4BW.png?token=AO45UWI7SNR6I7KHP4ZJVIS7LIG7S)
 --->
 
-For combination of several motifs with same length, the following sourcecode can be applied:
+For combination of several motifs with same length, the following source code can be applied:
 ```
 color.plot2<-function(data,col){
   ggplot(melt((data)), aes(x = Var1, y = Var2)) +
@@ -105,7 +105,7 @@ color.plot2(hp.com2(c("ATG","AGT","CGT","CTG","TCA","TAC","GAC","GCA"),8),"Spect
 
 ### Java Implementation
 
-The Java implementation is an optimized version for code word generation, which takes DNA storage constraints into account, Namely, GC content homopolymers and undesired motifs.
+The Java implementation is an optimized version for code word generation, which takes DNA storage constraints into account, namely, GC content, homopolymers, and undesired motifs.
 
 The JAR can be executed with:
 
@@ -113,7 +113,7 @@ The JAR can be executed with:
 java -jar ConstrainedKaos.jar -length 6 -output path/codewords.fasta -hp 2
 ```
 
-The codeword length **-length** and the output **-output** path to store the codewords, are always required to run the application.
+The codeword length (**-length**) and the output (**-output**) path to store the code words are always required to run the application.
 At least one of the following options is required as well:
 
 **-hp**: length of the homopolymer, which should be constrained
@@ -133,7 +133,7 @@ Also, there is the option to plot the code words:
 
 **-plot**: size as an integer of the dots (we recommend 1 - 5) in the CGR plot, if **-plot** is not used, no plot will be created
 
-For instance, the following generates command code words of length 10. A GC content of an interval from 40 - 60 %, a homopolymer length <=3, and undesired motifs provided in **test.fasta**  are applied. The codewords will be saved in **output.fasta**. The plot function is enabled.
+For instance, the following generates command code words of length 10. A GC content of an interval from 40 - 60 %, a homopolymer length <=3, and undesired motifs provided in **test.fasta**  are applied. The code words will be saved in **output.fasta**. The plot function is enabled. The complete process will take a few seconds.
 
 ```
 java -jar ConstrainedKaos.jar -length 10 -plot 1 -output output.fasta -gcStart 0.4 -gcEnd 0.6 -hp 3 -input test.fasta 
@@ -145,12 +145,12 @@ This will produce the console output:
 allowed: 98324 from: 1048576
 Ratio of allowed sequences: 9.376907348632812 %
 Starting to translate to DNA.
-Translation done, constrained DNA is saved in output.fasta
+The translation is done, constrained DNA is saved in output.fasta
 ```
 And the following plot will appear:
 
 <img width="250" alt="Image GC50" src="https://github.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/blob/master/documentation/images/java.png?raw=true">
 
-For a codeword length greater 12 the application will throw a warning, that the heap size may be exceeded. So for longer code words, the heap size of the JVM has to be adapted. 
+For a code word length greater then 12, the application will throw a warning that the heap size may be exceeded. So for longer code words, the heap size of the JVM has to be adapted. 
 The longest words we tested for were 16, which also let to a significant increase in the runtime.
-The runtime of code words lower than 10 usually takes a few seconds, depending on the set of constraints, and activating the plot function. The generated code words will be stored on the defined path for **-output** as a single FASTA file. The console output will inform the user, how many sequences are generated. In case of the usage of an input file, the user will be informed, if any sequence length exceeds the code word length. In this case, this input sequence will be ignored. 
+The runtime of code words lower than 10 usually takes a few seconds, depending on the set of constraints and an activated plot function. The generated code words will be stored in the defined path for **-output** as a single FASTA file. The console output will inform the user of how many sequences are generated. In case of the usage of an input file, the user will be informed, if any sequence length exceeds the code word length. In this case, this input sequence will be ignored. 
