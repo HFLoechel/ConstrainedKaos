@@ -45,7 +45,7 @@ git clone https://github.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-C
 
 ### R Script
 
-The R Script contains functions for the implementation of the equations adhere to the homopolymer/motif constraint, the GC content/Hamming distance calculation, and the Hamming distance calculation for one codeword against the others. It is intended to illustrate the mathematical equations, so we recommend using it within RStudio. For every equation at least one example is provided. E.g. for homopolymer >=2:
+The R Script contains functions for the implementation of the equations adhere to the homopolymer/motif constraint, the GC content/Hamming distance calculation, and the Hamming distance calculation for one codeword against the others. It is intended to illustrate the mathematical equations, therefor we recommend using RStudio. For every equation at least one example is provided. For instance, the following image is the result of limiting the length of homopolymers >=2:
 
 
 <img width="250" alt="Image HP" src="https://github.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/blob/master/documentation/images/hp2.png?raw=true">
