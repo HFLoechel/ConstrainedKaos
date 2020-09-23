@@ -58,6 +58,7 @@ public class Plot {
         chartPanel.setMouseWheelEnabled(true);
 
         chart.removeLegend();
+        chartPanel.setPopupMenu( null );
         cgr.setContentPane(chartPanel);
         cgr.setVisible(true);
 
