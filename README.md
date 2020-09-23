@@ -9,6 +9,15 @@ An implementation of the equations can be found in the R-Script. The optimized a
 
 ## Requirements
 
+### Hadware Requirements
+
+mCGR requires only a standard computer, with enough RAM for the user-defined code word length. 
+
+### OS Requirements
+
+The software is platform-independent and has been tested on Windows 10 and Linux (Ubuntu).
+
+
 ### R Script
 
 R version 3.5.3 or higher
@@ -110,8 +119,9 @@ or for an interval both of the following are required
 
 Also, there is the option to plot the code words:
 
-**-plot**: size as an integer of the dots in the CGR plot, if **-plot** is not used, no plot will be created
+**-plot**: size as an integer of the dots (we recommend 1 - 5) in the CGR plot, if **-plot** is not used, no plot will be created
 
 
-For a codeword length greater 12 the application will throw a warning, that the heap size may be exceeded. So for longer codewords, the heap size of the JVM has to be adapted. 
+For a codeword length greater 12 the application will throw a warning, that the heap size may be exceeded. So for longer code words, the heap size of the JVM has to be adapted. 
 The longest words we tested for were 16, which also let to a significant increase in the runtime.
+The runtime of code words lower than 10 usually takes a few seconds, depending on the set of constraints, and activating the plot function. The generated code words will be stored on the defined path for **-output** as a single FASTA file. The console output will inform the user, how many sequences are generated. In case of the usage of an input file, the user will be informed, if any sequence length exceeds the code word length. In this case, this input sequence will be ignored. 
