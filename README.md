@@ -35,10 +35,10 @@ Java 12.0.1 or higher
 
 The R script and the compiled jar can either be downloaded or cloned, by a git request:
 
-'''
+```
 git clone https://github.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords
 
-'''
+```
 
 
 ## Usage
@@ -109,7 +109,9 @@ The Java implementation is an optimized version for code word generation, which 
 
 The JAR can be executed with:
 
+```
 java -jar ConstrainedKaos.jar -length 6 -output path/codewords.fasta -hp 2
+```
 
 The codeword length **-length** and the output **-output** path to store the codewords, are always required to run the application.
 At least one of the following options is required as well:
@@ -130,6 +132,23 @@ or for an interval both of the following are required
 Also, there is the option to plot the code words:
 
 **-plot**: size as an integer of the dots (we recommend 1 - 5) in the CGR plot, if **-plot** is not used, no plot will be created
+
+For instance, the following generates command code words of length 10. A GC content of an interval from 40 - 60 %, a homopolymer length <=3, and undesired motifs provided in **test.fasta**  are applied. The codewords will be saved in **output.fasta**. The plot function is enabled.
+
+```
+java -jar ConstrainedKaos.jar -length 10 -plot 1 -output output.fasta -gcStart 0.4 -gcEnd 0.6 -hp 3 -input test.fasta 
+```
+
+This will produce the console output:
+
+```
+allowed: 98324 from: 1048576
+Ratio of allowed sequences: 9.376907348632812 %
+Starting to translate to DNA.
+Translation done, constrained DNA is saved in output.fasta
+```
+And the following plot will appear:
+
 
 
 For a codeword length greater 12 the application will throw a warning, that the heap size may be exceeded. So for longer code words, the heap size of the JVM has to be adapted. 
