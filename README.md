@@ -31,11 +31,21 @@ dependencies: Apache Commons Math 3.6.1, JFreeChart 1.0.19, Common 1.0.23
 
 Java 12.0.1 or higher
 
+## Installation Guide
+
+The R script and the compiled jar can either be downloaded or cloned, by a git request:
+
+'''
+git clone https://github.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords
+
+'''
+
+
 ## Usage
 
 ### R Script
 
-The R Script contains functions for the implementation of the equations adhere to the homopolymer/motif constraint, the GC content/Hamming distance calculation, and the Hamming distance calculation for one codeword against the others. For every equation at least one example is provided. E.g. for homopolymer >=2:
+The R Script contains functions for the implementation of the equations adhere to the homopolymer/motif constraint, the GC content/Hamming distance calculation, and the Hamming distance calculation for one codeword against the others. It is intended to illustrate the mathematical equations, so we recommend using it within RStudio. For every equation at least one example is provided. E.g. for homopolymer >=2:
 
 
 <img width="250" alt="Image HP" src="https://github.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/blob/master/documentation/images/hp2.png?raw=true">
@@ -93,7 +103,9 @@ color.plot2(hp.com2(c("ATG","AGT","CGT","CTG","TCA","TAC","GAC","GCA"),8),"Spect
 ![Image GC](https://raw.githubusercontent.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/master/documentation/images/motifs.png?token=AO45UWONALRSRW4UL364PXS7LII7Y)
 --->
 
-### JAR
+### Java Implementation
+
+The Java implementation is an optimized version for code word generation, which takes DNA storage constraints into account, Namely, GC content homopolymers and undesired motifs.
 
 The JAR can be executed with:
 
