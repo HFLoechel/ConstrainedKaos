@@ -116,7 +116,7 @@ At least one of the following options is required as well:
 
 **-hp**: length of the homopolymer, which should be constrained
 
-**input**: path to fasta file with constrained sequences
+**-input**: path to fasta file with constrained sequences
 
 **-gc**: GC content as float
 
