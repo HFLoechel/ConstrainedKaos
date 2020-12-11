@@ -204,7 +204,7 @@ public class mCGR {
         return this.rows;
     }
 
-    public mCGR add(mCGR mCGR) {
+    mCGR add(mCGR mCGR) {
         for (int row : mCGR.rows.keySet()) {
             if (this.rows.containsKey(row)) {
                 HashSet<Integer> col = this.rows.get(row);
@@ -252,5 +252,30 @@ public class mCGR {
 
     void setLen(int len) {
         this.len = (int) Math.pow(2, len);
+    }
+
+    void spotStart(mCGR preC) {
+        int iterator = this.getLen() / preC.getLen();
+        for (int row : preC.rows.keySet()) {
+            for (int i = 1; i < iterator; i++) {
+                int newRow = row + preC.getLen() * i;
+                HashSet<Integer> newColOne;
+
+                if (rows.containsKey(row)) {
+                    newColOne = this.rows.get(row);
+                } else {
+                    newColOne = new HashSet<>();
+                    this.rows.put(row, newColOne);
+                }
+
+                HashSet<Integer> cols = preC.rows.get(row);
+
+                for (int col : cols) {
+                    newColOne.add(col);
+                    newColOne.add(col + preC.getLen() * i);
+                }
+                this.rows.put(newRow, newColOne);
+            }
+        }
     }
 }
