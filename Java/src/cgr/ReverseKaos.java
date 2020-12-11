@@ -7,6 +7,7 @@ import org.apache.commons.math3.fraction.BigFraction;
 
 import java.io.*;
 import java.math.BigInteger;
+import java.util.HashMap;
 
 /**
  * ConstrainedKaos 05.11.19
@@ -15,37 +16,74 @@ import java.math.BigInteger;
  * @author Hannah Franziska Löchel
  */
 public class ReverseKaos extends CGR {
+    private HashMap<String, int[]> sequences;
+
+
+    /**
+     * Constructor for codewords from mCGR with constrains
+     * @param constraints which will be translated to DNA codewords
+     */
+    public ReverseKaos(Constraints constraints) {
+        super();
+        this.sequences = new HashMap<>();
+        System.out.println("Starting to translate to DNA.");
+        mCGR matrix = constraints.getMatrix();
+        int len = matrix.getLen();
+        for (int key : matrix.getRows().keySet()) {
+
+            BigFraction y = new BigFraction(new BigInteger(String.valueOf(len + 1 - key * 2)), (new BigInteger(String.valueOf(len))));
+
+            for (int col : constraints.getMatrix().getRows().get(key)) {
+                BigFraction x = new BigFraction(new BigInteger(String.valueOf(len + 1 - col * 2)), (new BigInteger(String.valueOf(len))));
+                sequences.put(reverseKaos(x, y, constraints.getWordlength()), new int[]{key, col});
+            }
+
+
+        }
+
+
+    }
+
+    /**
+     *
+     * @param s Sting representing a codeword
+     * @return row position in mCGR
+     */
+    public int getRow(String s) {
+
+        return this.sequences.get(s)[0];
+    }
+
+    /**
+     *
+     * @param s Sting representing a codeword
+     * @return col position in mCGR
+     */
+    public int getCol(String s) {
+
+        return this.sequences.get(s)[1];
+    }
+
+    public HashMap<String, int[]> getSequences() {
+        return this.sequences;
+    }
 
 
     /**
      * Method to save codewords
      *
-     * @param constraints Constraints object to be saved
-     * @param path        Output path (as string)
+     * @param path Output path (as string)
      */
-    public static void saveAsDNA(Constraints constraints, String path) {
+    public void saveAsDNA(String path) {
         System.out.println("Starting to translate to DNA.");
-        mCGR matrix = constraints.getMatrix();
-        int len = matrix.getLen();
-        int count = 0;
         try {
-
             BufferedWriter writer = new BufferedWriter(new FileWriter(path));
-
-            for (int key : matrix.getRows().keySet()) {
-
-                BigFraction y = new BigFraction(new BigInteger(String.valueOf(len + 1 - key * 2)), (new BigInteger(String.valueOf(len))));
-
-                for (int col : constraints.getMatrix().getRows().get(key)) {
-                    BigFraction x = new BigFraction(new BigInteger(String.valueOf(len + 1 - col * 2)), (new BigInteger(String.valueOf(len))));
-                    writer.write(">" + count + "\n");
-                    writer.write(reverseKaos(x, y, constraints.getWordlength()) + "\n");
-                    count++;
-                }
-
-
+            for (String sequence : this.getSequences().keySet()) {
+                int row = this.getRow(sequence);
+                int col = this.getCol(sequence);
+                writer.write(">" + "row-" + row + "," + "col-" + col + "\n");
+                writer.write(sequence + "\n");
             }
-
             writer.flush();
             writer.close();
             System.out.println("The translation is done, constrained DNA is saved in " + path);
@@ -72,19 +110,19 @@ public class ReverseKaos extends CGR {
 
 
             if (!isNegative(x) && !isNegative(y)) {
-                stringBuilder.append("T");
+                stringBuilder.append("G");
                 zx = one;
                 zy = one;
             } else if (!isNegative(x) && isNegative(y)) {
-                stringBuilder.append("C");
+                stringBuilder.append("A");
                 zx = one;
                 zy = minusOne;
             } else if (isNegative(x) && !isNegative(y)) {
-                stringBuilder.append("A");
+                stringBuilder.append("C");
                 zx = minusOne;
                 zy = one;
             } else {
-                stringBuilder.append("G");
+                stringBuilder.append("T");
                 zx = minusOne;
                 zy = minusOne;
             }
@@ -93,7 +131,7 @@ public class ReverseKaos extends CGR {
             y = y.multiply(new BigFraction(2)).subtract(zy);
 
         }
-        sequence = stringBuilder.toString();
+        sequence = stringBuilder.reverse().toString();
         return sequence;
     }
 
