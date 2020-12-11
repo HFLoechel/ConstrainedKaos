@@ -2,6 +2,7 @@
 import constraint.*;
 import cgr.ReverseKaos;
 
+
 /**
  * ConstrainedKaos
  * @author Hannah Franziska Löchel
@@ -19,6 +20,7 @@ public class Main {
     private static boolean out = false;
     private static boolean constrains = false;
     private static boolean gcCon = false;
+    private static Input input;
 
     public static void main(String[] args) {
 
@@ -37,9 +39,11 @@ public class Main {
                     Constraints constraintsKaos = calculateConstrains();
                     GCContent gcContent = calculateGC();
                     constraintsKaos.filterGC(gcContent);
+                    Concatenate concatenate=new Concatenate(length,input.getInput());
                     double ratio = constraintsKaos.ratio();
                     System.out.println("Ratio of allowed sequences: " + ratio * 100 + " %");
-                    ReverseKaos.saveAsDNA(constraintsKaos, fileOutput);
+                    ReverseKaos reverseKaos = new ReverseKaos(constraintsKaos);
+                    new Output(reverseKaos,concatenate, fileOutput);
                     if (plotSize > 0) {
                         Plot.plot(constraintsKaos.getMatrix(), plotSize);
                     }
@@ -58,7 +62,7 @@ public class Main {
 
     private static Constraints calculateConstrains() {
         if (constrains) {
-            Input input = calculateInput(hp, fileInput);
+            input = calculateInput(hp, fileInput);
             if (input.getInput().keySet().size() > 0) {
                 return new Constraints(length, input.getInput());
             }
