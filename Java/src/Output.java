@@ -23,7 +23,7 @@ public class Output {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(pathCon));
             writer.write("{ \"motif\" :");
-            String motifs = buildJson(concatenate.getSchema());
+            String motifs = buildJson(concatenate.getScheme());
             writer.write(motifs);
             writer.write(", ");
             writer.write(" \"prepending(row:col)\" :");

@@ -7,7 +7,7 @@ import java.util.HashSet;
 
 /**
  * ConstrainedKaos  10.12.20
- * Class for concatenation schema
+ * Class for concatenation scheme
  *
  * @author Hannah Franziska Löchel
  */
@@ -85,10 +85,10 @@ public class Concatenate {
     }
 
     /**
-     * returns concatenation schema for motifs
+     * returns concatenation scheme for motifs
      * @return HashMap with motifs key: prefix (ending of codeword), value: postfix (start of concatenated codeword)
      */
-    public HashMap<String, HashSet<String>> getSchema() {
+    public HashMap<String, HashSet<String>> getScheme() {
         return this.concatenate;
     }
 
