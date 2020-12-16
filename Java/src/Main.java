@@ -89,7 +89,7 @@ public class Main {
         }
     }
 
-    //todo gc strat< gc end prüfen
+    
     private static void setParameters(String arg, String arg1) {
         switch (arg) {
             //required
