@@ -39,7 +39,7 @@ Java 12.0.1 or higher
 The R script and the compiled jar can either be downloaded or cloned, by a git request:
 
 ```
-git clone https://github.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords
+git clone https://github.com/HFLoechel/ConstrainedKaos
 
 ```
 
@@ -170,7 +170,8 @@ The JSON file with the ending **-conctenate.json** contains the concatenation sc
 { 
 "motif" :{ 
 	"AA" :["A"], 
-	"CC" :["C"], "TT" :["T"], 
+	"CC" :["C"], 
+	"TT" :["T"], 
 	"GG" :["G"],
 	"A" :["AA","CT","CG"], 
 	"AC" :["T","G"], 
@@ -180,8 +181,8 @@ The JSON file with the ending **-conctenate.json** contains the concatenation sc
 	"G" :["GG","TA","TC"], 
 	"GT" :["A","C"], 
 	"CA" :["T","G"]},  
- "prepending(row:col)" :{ "AA" :{ "1024" :[1,2,3,4,...,256],...},...}
- appending(row:col)" :{ "AA" :{ "512" :[...],...},...}
+ "prepending(row:col)" :{ "AA" :{ "1024" :[1,2,3,4,...,256],...},...},
+ "appending(row:col)" :{ "AA" :{ "512" :[...],...},...}
  }
 ```
 
