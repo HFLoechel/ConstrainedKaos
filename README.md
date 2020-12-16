@@ -149,6 +149,8 @@ allowed: 98324 from: 1048576
 Ratio of allowed sequences: 9.376907348632812 %
 Starting to translate to DNA.
 The translation is done, constrained DNA is saved in output.fasta
+The concatenations scheme is saved in output.fasta-concatenate.json
+The mCGR is saved in output.fasta-mCGR.json
 ```
 And the following plot will appear:
 
@@ -156,4 +158,31 @@ And the following plot will appear:
 
 For a code word length greater then 12, the application will throw a warning that the heap size may be exceeded. So for longer code words, the heap size of the JVM has to be adapted. 
 The longest words we tested for were 16, which also let to a significant increase in the runtime.
-The runtime of code words lower than 10 usually takes a few seconds, depending on the set of constraints and an activated plot function. The generated code words will be stored in the defined path for **-output** as a single FASTA file. The console output will inform the user of how many sequences are generated. In case of the usage of an input file, the user will be informed, if any sequence length exceeds the code word length. In this case, this input sequence will be ignored. 
+The runtime of code words lower than 10 usually takes a few seconds, depending on the set of constraints and an activated plot function. The generated code words will be stored in the defined path for **-output** as a single FASTA file. Additionally, the mCGR of code words and a concatenation scheme is stored in JSON file format. The output for the **-mCGR.json** contains the code words with the positional information in the matrix:
+
+```
+{ "mCGR(row,col)" :{ "TATGGAGTGT" :[680,646], "CCTACAAGTG" :[365,280], ... , "GTTAAGGTTG" :[415,391]}}
+```
+
+The JSON file with the ending **-conctenate.json** contains the concatenation scheme, wich allows the identification of concatenations that lead to the formation of undesired motifs. The motif key contains the keys to reassemble the prepending and appending positions. The prepending and appending keys contain the positional information of the mCGR, which schould not be concatenated:
+
+```
+{ 
+"motif" :{ 
+	"AA" :["A"], 
+	"CC" :["C"], "TT" :["T"], 
+	"GG" :["G"],
+	"A" :["AA","CT","CG"], 
+	"AC" :["T","G"], 
+	"TG" :["A","C"],
+	"C" :["CC","AT","AG"], 
+	"T" :["TT","GA","GC"], 
+	"G" :["GG","TA","TC"], 
+	"GT" :["A","C"], 
+	"CA" :["T","G"]},  
+ "prepending(row:col)" :{ "AA" :{ "1024" :[1,2,3,4,...,256],...},...}
+ appending(row:col)" :{ "AA" :{ "512" :[...],...},...}
+ }
+```
+
+The console output will inform the user of how many sequences are generated. In case of the usage of an input file, the user will be informed, if any sequence length exceeds the code word length. In this case, this input sequence will be ignored. 
