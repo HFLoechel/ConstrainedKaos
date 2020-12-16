@@ -49,7 +49,7 @@ public class Output {
             e.printStackTrace();
         }
 
-        System.out.println("The concatenations schema is saved in " + pathCon);
+        System.out.println("The concatenations scheme is saved in " + pathCon);
         System.out.println("The mCGR is saved in " + pathMCGR);
 
     }
