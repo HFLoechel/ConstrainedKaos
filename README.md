@@ -164,7 +164,7 @@ The runtime of code words lower than 10 usually takes a few seconds, depending o
 { "mCGR(row,col)" :{ "TATGGAGTGT" :[680,646], "CCTACAAGTG" :[365,280], ... , "GTTAAGGTTG" :[415,391]}}
 ```
 
-The JSON file with the ending **-conctenate.json** contains the concatenation scheme, wich allows the identification of concatenations that lead to the formation of undesired motifs. The motif key contains the keys to reassemble the prepending and appending positions. The prepending and appending keys contain the positional information of the mCGR, which schould not be concatenated:
+The JSON file with the ending **-concatenate.json** contains the concatenation scheme, wich allows the identification of concatenations that lead to the formation of undesired motifs. The motif key contains the keys to reassemble the prepending and appending positions. The prepending and appending keys contain the positional information of the mCGR, which schould not be concatenated:
 
 ```
 { 
