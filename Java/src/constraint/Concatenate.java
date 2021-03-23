@@ -45,9 +45,9 @@ public class Concatenate {
                             l.add(appending);
                             this.concatenate.put(prepending, l);
                         }
-                    } else {
-                        System.out.println(prepending + " " + appending);
-                    }
+                    } //else {
+                       // System.out.println(prepending + " " + appending);
+                   // }
                 }
             }
 

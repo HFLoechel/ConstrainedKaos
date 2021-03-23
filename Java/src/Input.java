@@ -78,7 +78,7 @@ public class Input {
                     sequence = stringBuilder.toString().toLowerCase().trim().replace("\n", "").replace("\r", "");
 
                     //input.put(key, sequence.toLowerCase());
-                    if (sequence.length() <= length*2) {
+                    if (sequence.length() <= length) {
                         if (this.input.containsKey(sequence.length())) {
                             this.input.get(sequence.length()).add(sequence);
                         } else {
@@ -88,7 +88,7 @@ public class Input {
                         }
 
                     } else {
-                        System.out.println(">" + key + "\n" + sequence + "\nis longer then 2 * codeword length and will be dismissed.");
+                        System.out.println(">" + key + "\n" + sequence + "\nis longer then codeword length and will be dismissed.");
                     }
 
 
