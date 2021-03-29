@@ -75,7 +75,6 @@ public class ReverseKaos extends CGR {
      * @param path Output path (as string)
      */
     public void saveAsDNA(String path) {
-        System.out.println("Starting to translate to DNA.");
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(path));
             for (String sequence : this.getSequences().keySet()) {
