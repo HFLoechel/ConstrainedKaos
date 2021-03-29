@@ -278,4 +278,18 @@ public class mCGR {
             }
         }
     }
+
+    public mCGR filter(Link link) {
+        for (mCGR m: link.getMCGRs()) {
+            for (int row: m.getRows().keySet()) {
+                HashSet<Integer> col =  m.getRows().get(row);
+                for (int column: col    ) {
+                    if(this.getRows().containsKey(row)){
+                        this.getRows().get(row).remove(column);
+                    }
+                }
+            }
+        }
+        return this;
+    }
 }

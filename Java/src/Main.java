@@ -5,12 +5,14 @@ import cgr.ReverseKaos;
 
 /**
  * ConstrainedKaos
+ *
  * @author Hannah Franziska Löchel
  */
 
 public class Main {
     private static int length = 0;
     private static int hp = -1;
+    private static int mode = 1;
     static String fileInput = "";
     private static double gc;
     private static double gcStart = 0;
@@ -39,14 +41,36 @@ public class Main {
                     Constraints constraintsKaos = calculateConstrains();
                     GCContent gcContent = calculateGC();
                     constraintsKaos.filterGC(gcContent);
-                    Concatenate concatenate=new Concatenate(length,input.getInput());
+                    if (hp == -1 && fileInput.equals("")) {
+                        ReverseKaos reverseKaos2 = new ReverseKaos(constraintsKaos);
+                        new Output(reverseKaos2, fileOutput);
+
+                    } else {
+                        if (mode == 1) {
+                            System.out.println("hier");
+                            Concatenate concatenate = new Concatenate(length, input.getInput());
+                            ReverseKaos reverseKaos = new ReverseKaos(constraintsKaos);
+                            new Output(reverseKaos, concatenate, fileOutput);
+                        } else {
+                            Link links = new Link(length, input.getInput());
+                            constraintsKaos.filterMotifs(links);
+                            ReverseKaos reverseKaos2 = new ReverseKaos(constraintsKaos);
+                            new Output(reverseKaos2, fileOutput);
+
+                        }
+                    }
+
+
                     double ratio = constraintsKaos.ratio();
                     System.out.println("Ratio of allowed sequences: " + ratio * 100 + " %");
-                    ReverseKaos reverseKaos = new ReverseKaos(constraintsKaos);
-                    new Output(reverseKaos,concatenate, fileOutput);
+
+
                     if (plotSize > 0) {
                         Plot.plot(constraintsKaos.getMatrix(), plotSize);
                     }
+
+
+                    //Plot.plot(constraintsKaos.getMatrix(), plotSize);
 
                 } else {
                     System.out.println("Sequence length and destination of output file are both required.");
@@ -71,7 +95,7 @@ public class Main {
         return new Constraints(length);
 
     }
-
+//ToDO hp> length
     private static Input calculateInput(int hp, String fileInput) {
         if (hp > 0 && !fileInput.equals("")) {
             return new Input(fileInput, length).add(new Input(hp));
@@ -169,6 +193,15 @@ public class Main {
                 } catch (NumberFormatException ex) {
                     System.out.println("Plot size has to be a natural number.");
                     System.exit(1);
+                }
+                break;
+            //optional
+            case "-mode":
+                try {
+                    mode = Integer.parseInt(arg1);
+                } catch (NumberFormatException ex) {
+                    System.out.println("Mode has to be 1 or 2, the programm will start in mode 1");
+
                 }
                 break;
 

@@ -156,4 +156,12 @@ public class Constraints {
         return this.result;
     }
 
+    /**
+     * Method to delete sequences, which can form an undesired motif
+     *
+     * @param links HashSet containing mCGRs with positions forming undesired motifs when concatenated
+     */
+    public void filterMotifs(Link links) {
+        this.result = this.getMatrix().filter(links);
+    }
 }

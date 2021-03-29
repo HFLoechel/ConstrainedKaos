@@ -15,6 +15,12 @@ import java.util.HashSet;
  * @author Hannah Franziska Löchel
  */
 public class Output {
+
+    /**
+     * @param reverseKaos sequences from mCGR
+     * @param concatenate concatenation schema
+     * @param fileOutput  output file
+     */
     public Output(ReverseKaos reverseKaos, Concatenate concatenate, String fileOutput) {
 
         reverseKaos.saveAsDNA(fileOutput);
@@ -30,7 +36,7 @@ public class Output {
             writer.write(buildJsonmCGR(concatenate.getPrepending()));
             writer.write(", ");
             writer.write(" \"appending(row:col)\" :");
-            writer.write(buildJsonmCGR( concatenate.getAppending()));
+            writer.write(buildJsonmCGR(concatenate.getAppending()));
             writer.write("}");
             writer.close();
 
@@ -54,15 +60,23 @@ public class Output {
 
     }
 
+    /**
+     * @param reverseKaos sequences from mCGR
+     * @param fileOutput  output file
+     */
+    public Output(ReverseKaos reverseKaos, String fileOutput) {
+        reverseKaos.saveAsDNA(fileOutput);
+    }
+
     private String buildJsonSequences(ReverseKaos reverseKaos) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("{ ");
         int i = 1;
         for (String sequence : reverseKaos.getSequences().keySet()) {
             stringBuilder.append("\"").append(sequence).append("\"").append(" :[");
-            int row=reverseKaos.getRow(sequence);
+            int row = reverseKaos.getRow(sequence);
 
-            int col=reverseKaos.getCol(sequence);
+            int col = reverseKaos.getCol(sequence);
             stringBuilder.append(row).append(",").append(col);
             stringBuilder.append("]");
             if (i < reverseKaos.getSequences().size()) {
@@ -75,9 +89,7 @@ public class Output {
     }
 
 
-
     /**
-     *
      * @param mCGRs prepending or appending HashMap with corresponding mCGRs
      * @return String in json format
      */
@@ -127,7 +139,6 @@ public class Output {
 
 
     /**
-     *
      * @param concatenate HashMap with subsequences of motifs
      * @return String in json format
      */
