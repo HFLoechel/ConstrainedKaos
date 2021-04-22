@@ -34,6 +34,10 @@ public class Input {
 
     }
 
+    public Input() {
+        this.input = new HashMap<>();
+    }
+
     /**
      * Combines two inputs with different constarints
      *

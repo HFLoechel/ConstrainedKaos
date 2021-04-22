@@ -12,7 +12,7 @@ import cgr.ReverseKaos;
 public class Main {
     private static int length = 0;
     private static int hp = -1;
-    private static int mode = 1;
+    private static boolean mode = false;
     static String fileInput = "";
     private static double gc;
     private static double gcStart = 0;
@@ -41,23 +41,17 @@ public class Main {
                     Constraints constraintsKaos = calculateConstrains();
                     GCContent gcContent = calculateGC();
                     constraintsKaos.filterGC(gcContent);
-                    if (hp == -1 && fileInput.equals("")) {
-                        ReverseKaos reverseKaos2 = new ReverseKaos(constraintsKaos);
-                        new Output(reverseKaos2, fileOutput);
-
+                    System.out.println("Lexicographic condition is " + mode + ".");
+                    if (!mode) {
+                        ReverseKaos reverseKaos = new ReverseKaos(constraintsKaos);
+                        reverseKaos.saveAsDNA(fileOutput);
                     } else {
-                        if (mode == 1) {
-                            System.out.println("hier");
-                            Concatenate concatenate = new Concatenate(length, input.getInput());
-                            ReverseKaos reverseKaos = new ReverseKaos(constraintsKaos);
-                            new Output(reverseKaos, concatenate, fileOutput);
-                        } else {
-                            Link links = new Link(length, input.getInput());
-                            constraintsKaos.filterMotifs(links);
-                            ReverseKaos reverseKaos2 = new ReverseKaos(constraintsKaos);
-                            new Output(reverseKaos2, fileOutput);
+                        Link links = new Link(length, input.getInput());
+                        constraintsKaos.filterMotifs(links);
+                        ReverseKaos reverseKaos2 = new ReverseKaos(constraintsKaos);
+                        reverseKaos2.saveAsDNA(fileOutput);
 
-                        }
+
                     }
 
 
@@ -69,8 +63,6 @@ public class Main {
                         Plot.plot(constraintsKaos.getMatrix(), plotSize);
                     }
 
-
-                    //Plot.plot(constraintsKaos.getMatrix(), plotSize);
 
                 } else {
                     System.out.println("Sequence length and destination of output file are both required.");
@@ -91,15 +83,17 @@ public class Main {
                 return new Constraints(length, input.getInput());
             }
 
+        } else {
+            input = new Input();
         }
         return new Constraints(length);
 
     }
-//ToDO hp> length
+
     private static Input calculateInput(int hp, String fileInput) {
-        if (hp > 0 && !fileInput.equals("")) {
+        if (hp > 0 && !fileInput.equals("") && hp <= length) {
             return new Input(fileInput, length).add(new Input(hp));
-        } else if (hp > 0) {
+        } else if (hp > 0 && hp <= length) {
             return new Input(hp);
         } else return new Input(fileInput, length);
 
@@ -113,7 +107,7 @@ public class Main {
         }
     }
 
-    
+
     private static void setParameters(String arg, String arg1) {
         switch (arg) {
             //required
@@ -196,11 +190,11 @@ public class Main {
                 }
                 break;
             //optional
-            case "-mode":
+            case "-lex":
                 try {
-                    mode = Integer.parseInt(arg1);
-                } catch (NumberFormatException ex) {
-                    System.out.println("Mode has to be 1 or 2, the programm will start in mode 1");
+                    mode = Boolean.parseBoolean(arg1);
+                } catch (IllegalArgumentException ex) {
+                    System.out.println("Lex has to be true or false, the program will start without lexicographic condition");
 
                 }
                 break;
@@ -228,7 +222,8 @@ public class Main {
                         "-gcStart: GC content start as float\n" +
                         "-gcEnd: GC content end as float\n" +
                         "optional:\n" +
-                        "-plot: size as integer of the dots (we recommend 1 - 5) in the mCGR plot, if -plot is not used, no plot will be created\n"
+                        "-plot: size as integer of the dots (we recommend 1 - 5) in the mCGR plot, if -plot is not used, no plot will be created\n" +
+                        "-lex: default is false to generate all code words, true generates code words for lexicographic encoding \n"
 
         );
     }
