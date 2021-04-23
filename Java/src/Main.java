@@ -209,7 +209,7 @@ public class Main {
 
     private static void help() {
         System.out.println(
-                "ConstrainedKaos Version 1.1.0\n" +
+                "ConstrainedKaos Version 1.1.1\n" +
                         "Arguments:\n" +
                         "Required:\n" +
                         "-length: length of desired codewords (necessary)\n" +
