@@ -73,6 +73,11 @@ public class Constraints {
 
             zoom++;
         }
+
+        if(arrayList.contains(zoom) && arrayList.size()>1){
+            mCGR mCGR2 = new mCGR(input.get(zoom), zoom);
+            mCGR = mCGR.add(mCGR2);
+        }
         this.result = mCGR;
     }
 
