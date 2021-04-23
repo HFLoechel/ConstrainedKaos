@@ -2,5 +2,5 @@
 
 ## MESA Evaluation 
 ```
-java -jar ConstrainedKaos.jar -gcStart 0.4 -gcEnd 0.6 -input const.fasts -output results.fasta -hp 3 -length 10
+java -jar ConstrainedKaos.jar -gcStart 0.4 -gcEnd 0.6 -input MESA-motifs.fasts -output coodebookMESA.fasta -hp 3 -length 10
 ```

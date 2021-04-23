@@ -1,20 +1,20 @@
->box
+>Eukaryotic promotor recognition motif 
 TATAAA
->b2
+>Eukaryotic promotor recognition motif RC
 TTTATA
->R1
+>BbsI
 GAAGAC
->r1
+>BbsI RC
 GTCTTC
->R2
+>BsaI
 GGTCTC
->r2
+>BsaI RC
 GAGACC
->R3
+>BsmBI
 CGTCTC
->r3
+>BsmBI RC
 GAGACG
->R5
+>BtgZI
 GCGATG
->r5
+>BtgZI RC
 CATCGC

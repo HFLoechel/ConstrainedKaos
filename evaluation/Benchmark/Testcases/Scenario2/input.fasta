@@ -1,66 +1,70 @@
->1
+>Eukaryotic promotor recognition motif 
 TATAAA
->2
+>Prokaryotic promoter recognition motif 
 TTGACA
->3
+>Prokaryotic promoter recognition motif 
 TGTATAATG
->4
+>Eukaryotic ribosomal binding site 
 GCCACCATGG
->5
+>Eukaryotic ribosomal binding site 
 ACCACCATGG
->6
+>Eukaryotic polyadenylation signal 
 AATAAA
->7
+>Eukaryotic polyadenylation signal 
 TTGTGTGTTG
->9
+>Lox site spacer loxP WT 
 GCATACAT
->10
+>Lox site spacer lox1 
 TGGTATTA
->11
+>Lox site spacer lox2 
 TTCTATCT
->12
+>Lox site spacer lox3 
 GGATACTT
->13
+>Lox site spacer lox4 
 TACTATAC
->14
+>Lox site spacer lox5 
 CTATAGCC
->15
+>Lox site spacer lox6 
 AGGTATGC
->16
+>Lox site spacer lox7 
 TTGTATGG
->17
+>Lox site spacer lox8 
 GGATAGTA
->18
+>Lox site spacer lox9 
 GTGTATTT
->19
+>Lox site spacer lox10 
 GGTTACGG
->20
+>Lox site spacer lox11 
 TTTTAGGT
->21
+>Lox site spacer loxN 
 GTATACCT
->22
+>Lox site spacer loxP 5171 
 GTACACAT
->23
+>BbsI
 GAAGAC
->24
+>BsaI
 GGTCTC
->25
+>BsmBI
 CGTCTC
->26
-GCGATG
->27
+>BspQI
 GCTCTTC
->33
+>BtgZI
+GCGATG
+>Esp3I
+CGTCTC
+>SapI
+GCTCTTC
+>reversed - Eukaryotic promotor recognition motif 
 AAATAT
->34
+>reversed - Prokaryotic promoter recognition motif 
 ACAGTT
->35
+>reversed - Prokaryotic promoter recognition motif 
 GTAATATGT
->36
+>reversed - Eukaryotic ribosomal binding site 
 GGTACCACCG
->37
+>reversed - Eukaryotic ribosomal binding site 
 GGTACCACCA
->38
+>reversed - Eukaryotic polyadenylation signal 
 AAATAA
->39
+>reversed -Eukaryotic polyadenylation signal 
 GTTGTGTGTT
