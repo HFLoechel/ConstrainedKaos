@@ -2,7 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/274350908.svg)](https://zenodo.org/badge/latestdoi/274350908)
 
-This repository is the official implementation of Fractal Construction of Constrained Code Words for DNA Storage Systems.
+This repository is the official implementation of Fractal Construction of Constrained Code Words for DNA Storage Systems (<a href='https://doi.org/10.1093/nar/gkab1209' style='{link_style}'>Löchel <i> et al.</i> (2021)</a>).
 
 With the increasing speed of digitization, the amount of digital data produced is growing exponentially. To store this increasingly large amount of data, DNA is an alternative data storage medium. This comes with certain constraints, such as run-length limitation or guanine-cytosine (GC) content. Here we present a new approach, derived from chaos game representation for DNA, transformed into a matrix representation, to generate those DNA code words with certain constraints, namely GC content, homopolymers, and undesired motifs, which can then be used to build DNA storage systems.
 
@@ -98,7 +98,7 @@ hp.com=function(strings,n){
   m
 }
 
-color.plot2(hp.com2(c("ATG","AGT","CGT","CTG","TCA","TAC","GAC","GCA"),8),"Spectral")
+color.plot2(hp.com(c("ATG","AGT","CGT","CTG","TCA","TAC","GAC","GCA"),8),"Spectral")
 ```
 <img width="250" alt="Image GC50" src="https://github.com/HFLoechel/Fractal-Construction-of-Constrained-DNA-Codewords/blob/master/documentation/images/motifs.png?raw=true">
 
